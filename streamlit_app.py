@@ -1,5 +1,6 @@
 import streamlit as st
 from openai import OpenAI
+import google.generativeai as genai
 
 # Show title and description.
 st.title("💬 Chatbot")
@@ -19,6 +20,9 @@ else:
 
     # Create an OpenAI client.
     client = OpenAI(api_key=openai_api_key)
+
+    # coonfigure google ai
+    genai.configure(api_key=openai_api_key)
 
     # Create a session state variable to store the chat messages. This ensures that the
     # messages persist across reruns.
@@ -40,14 +44,12 @@ else:
             st.markdown(prompt)
 
         # Generate a response using the OpenAI API.
-        stream = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": m["role"], "content": m["content"]}
-                for m in st.session_state.messages
-            ],
-            stream=True,
-        )
+        
+
+        # configure Gemini Model
+        model = genai.GenerativeModel('gemini-1.0-pro-latest')
+        stream = model.generate_content("The opposite of hot is")
+
 
         # Stream the response to the chat using `st.write_stream`, then store it in 
         # session state.

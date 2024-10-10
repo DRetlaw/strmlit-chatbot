@@ -39,7 +39,7 @@ else:
     if prompt := st.chat_input("What is up?"):
 
         # Store and display the current prompt.
-        st.session_state.messages.append({"role": "user", "content": prompt})
+        st.session_state.messages.append({"role": "user", "parts": prompt})
         with st.chat_message("user"):
             st.markdown(prompt)
 
@@ -54,5 +54,5 @@ else:
         # Stream the response to the chat using `st.write_stream`, then store it in 
         # session state.
         with st.chat_message("assistant"):
-            response = st.write_stream(stream.text)
-        st.session_state.messages.append({"role": "assistant", "content": response})
+            response = st.write_stream(stream)
+        st.session_state.messages.append({"role": "assistant", "parts": response})

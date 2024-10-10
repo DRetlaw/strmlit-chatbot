@@ -19,7 +19,7 @@ if not openai_api_key:
 else:
 
     # Create an OpenAI client.
-    client = OpenAI(api_key=openai_api_key)
+    #client = OpenAI(api_key=openai_api_key)
 
     # coonfigure google ai
     genai.configure(api_key=openai_api_key)

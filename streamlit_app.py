@@ -1,5 +1,5 @@
 import streamlit as st
-from openai import OpenAI
+#from openai import OpenAI
 import google.generativeai as genai
 
 # Show title and description.

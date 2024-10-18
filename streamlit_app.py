@@ -56,5 +56,6 @@ else:
                 st.session_state.messages.append({"role": "assistant", "content": stream})
             else:
                 st.write("Error generating response.")
+                st.write(res)
         except Exception as e:
             st.write(f"An error occurred: {e}")

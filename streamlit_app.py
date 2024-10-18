@@ -48,8 +48,8 @@ else:
 
         # configure Gemini Model
         model = genai.GenerativeModel('gemini-1.0-pro-latest')
-        res = model.generate_content("The opposite of hot is")
-        stream = res.text
+        stream = model.generate_content("The opposite of hot is",stream=True)
+        #stream = res.text
 
 
         # Stream the response to the chat using `st.write_stream`, then store it in 

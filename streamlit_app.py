@@ -48,13 +48,13 @@ else:
 
         # configure Gemini Model
         model = genai.GenerativeModel('gemini-1.0-pro-latest')
-        int_res = model.generate_content("The opposite of hot is",stream=True)
+        int_res = model.generate_content(prompt,stream=True)
         res = int_res.resolve()
         stream = res.text
 
 
         # Stream the response to the chat using `st.write_stream`, then store it in 
         # session state.
-        with st.chat_message("user"):
+        with st.chat_message("assistant"):
             response = st.write_stream(stream)
         st.session_state.messages.append({"role": "user", "parts": response})

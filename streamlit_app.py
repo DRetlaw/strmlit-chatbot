@@ -48,7 +48,8 @@ else:
 
         # configure Gemini Model
         model = genai.GenerativeModel('gemini-1.0-pro-latest')
-        res = model.generate_content("The opposite of hot is",stream=True)
+        int_res = model.generate_content("The opposite of hot is",stream=True)
+        res = int_res.resolve()
         stream = res.text
 
 

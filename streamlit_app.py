@@ -43,6 +43,7 @@ else:
 
 
         int_res = model.generate_content("The opposite of hot is", stream=True)
+        st.write(int_res)
 
         try:
             res = int_res.resolve()

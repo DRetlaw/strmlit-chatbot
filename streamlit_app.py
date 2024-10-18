@@ -39,9 +39,21 @@ else:
 
         # Generate a response using the GenerativeAI API.
         model = genai.GenerativeModel(model_name="gemini-1.5-flash")  # Choose appropriate model name
-        response = model.generate_content(prompt, stream=True)
+        
 
-        # Stream the response to the chat using `st.write_stream`, then store it in session state.
-        with st.chat_message("assistant"):
-            st.write(response.text)  # No need for streaming here, use response.text directly
-        st.session_state.messages.append({"role": "assistant", "content": response.text})
+
+        int_res = model.generate_content("The opposite of hot is", stream=True)
+
+        try:
+            res = int_res.resolve()
+            if res:
+                stream = res.text
+
+                # Stream the response to the chat using `st.write_stream`, then store it in session state
+                with st.chat_message("assistant"):
+                    response = st.write_stream(stream)
+                st.session_state.messages.append({"role": "assistant", "content": stream})
+            else:
+                st.write("Error generating response.")
+        except Exception as e:
+            st.write(f"An error occurred: {e}")

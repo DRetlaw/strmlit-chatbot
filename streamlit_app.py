@@ -13,8 +13,8 @@ st.write(
 # Ask user for their OpenAI API key via `st.text_input`.
 # Alternatively, you can store the API key in `./.streamlit/secrets.toml` and access it
 # via `st.secrets`, see https://docs.streamlit.io/develop/concepts/connections/secrets-management
-openai_api_key = st.text_input("OpenAI API Key", type="password")
-if not openai_api_key:
+api_key = st.text_input("OpenAI API Key", type="password")
+if not api_key:
     st.info("Please add your OpenAI API key to continue.", icon="🗝️")
 else:
 
@@ -22,7 +22,7 @@ else:
     #client = OpenAI(api_key=openai_api_key)
 
     # coonfigure google ai
-    genai.configure(api_key=openai_api_key)
+    genai.configure(api_key=api_key)
 
     # Create a session state variable to store the chat messages. This ensures that the
     # messages persist across reruns.
@@ -48,7 +48,8 @@ else:
 
         # configure Gemini Model
         model = genai.GenerativeModel('gemini-1.0-pro-latest')
-        stream = model.generate_content("The opposite of hot is")
+        response = model.generate_content("The opposite of hot is")
+        stream = response.text
 
 
         # Stream the response to the chat using `st.write_stream`, then store it in 

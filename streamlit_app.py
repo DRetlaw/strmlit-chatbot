@@ -47,6 +47,7 @@ else:
         try:
             res = int_res.resolve()
             if res:
+                st.write(res)
                 stream = res.text
 
                 # Stream the response to the chat using `st.write_stream`, then store it in session state

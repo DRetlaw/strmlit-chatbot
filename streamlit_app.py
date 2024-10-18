@@ -39,7 +39,7 @@ else:
 
         # Generate a response using the GenerativeAI API.
         model = genai.GenerativeModel(model_name="gemini-1.5-flash")  # Choose appropriate model name
-        response = model.generate_content(prompt=prompt, conversation=st.session_state.messages[:-1])
+        response = model.generate_content(prompt, stream=True)
 
         # Stream the response to the chat using `st.write_stream`, then store it in session state.
         with st.chat_message("assistant"):

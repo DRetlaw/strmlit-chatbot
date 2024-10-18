@@ -13,7 +13,7 @@ st.write(
 # via `st.secrets`, see https://docs.streamlit.io/develop/concepts/connections/secrets-management
 genai_api_key = st.text_input("GenerativeAI API Key", type="password")
 if not genai_api_key:
-    st.info("Please add your GenerativeAI API key to continue.", icon="️")
+    st.info("Please add your GenerativeAI API key to continue.", icon="️🗝️")
 else:
 
     # Configure the GenerativeAI client

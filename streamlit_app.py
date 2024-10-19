@@ -47,5 +47,5 @@ else:
                 print(chunk)  # Print each chunk as it arrives
         
         with st.chat_message("assistant"):
-            response = st.write_stream(response.text)
+            response = st.write_stream(response)
         st.session_state.messages.append({"role": "assistant", "parts": response})

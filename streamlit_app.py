@@ -40,7 +40,7 @@ else:
         # Generate a response using the GenerativeAI API.
         model = genai.GenerativeModel(model_name="gemini-1.5-flash")  # Choose appropriate model name
 
-        response = model.generate_content("The opposite of hot is", stream=True)
+        response = model.generate_content(prompt, stream=True)
         # Process the streamed response
         for chunk in response:
             if chunk:  # Check if the chunk is not empty

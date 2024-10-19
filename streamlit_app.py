@@ -49,6 +49,6 @@ else:
                     text_value = chunk.text
                     with st.chat_message("assistant"):
                         response = st.write(text_value)
-                    st.session_state.messages.append({"role": "assistant", "parts": text_value})
+                    st.session_state.messages.append({"role": "assistant", "content": text_value})
         
         

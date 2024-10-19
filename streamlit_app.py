@@ -1,5 +1,6 @@
 import streamlit as st
 import google.generativeai as genai
+import json
 
 # Show title and description.
 st.title(" Chatbot")

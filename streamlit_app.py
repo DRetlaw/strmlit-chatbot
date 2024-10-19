@@ -45,14 +45,8 @@ else:
         # Process the streamed response
         for chunk in response:
             if chunk:  # Check if the chunk is not empty
-                # Parse the chunk as a JSON object
-                chunk_data = json.loads(chunk)
-                
-                # Access a specific field (e.g., 'text')
-                text_value=""
-                if 'text' in chunk_data:
-                    text_value = chunk_data['text']
-                    print(f"Extracted Text: {text_value}")
+                if hasattr(chunk, 'text'):
+                    text_value = chunk.text
         
         with st.chat_message("assistant"):
             response = st.write_stream(text_value)

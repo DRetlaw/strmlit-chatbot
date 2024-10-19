@@ -46,8 +46,9 @@ else:
         for chunk in response:
             if chunk:  # Check if the chunk is not empty
                 if hasattr(chunk, 'text'):
-                    text_value = chunk.text
+                    #text_value = chunk.text
+                    with st.chat_message("assistant"):
+                        response = st.write_stream(chunk)
+                    st.session_state.messages.append({"role": "assistant", "parts": chunk})
         
-        with st.chat_message("assistant"):
-            response = st.write_stream(text_value)
-        st.session_state.messages.append({"role": "assistant", "parts": text_value})
+        

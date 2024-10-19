@@ -44,8 +44,15 @@ else:
         # Process the streamed response
         for chunk in response:
             if chunk:  # Check if the chunk is not empty
-                print(chunk)  # Print each chunk as it arrives
+                # Parse the chunk as a JSON object
+                chunk_data = st.json.loads(chunk)
+                
+                # Access a specific field (e.g., 'text')
+                text_value=""
+                if 'text' in chunk_data:
+                    text_value = chunk_data['text']
+                    print(f"Extracted Text: {text_value}")
         
         with st.chat_message("assistant"):
-            response = st.write_stream(response)
-        st.session_state.messages.append({"role": "assistant", "parts": response})
+            response = st.write_stream(text_value)
+        st.session_state.messages.append({"role": "assistant", "parts": text_value})
